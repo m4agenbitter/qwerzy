@@ -7,7 +7,7 @@ build:
     docker: {}
   tagPolicy:
     envTemplate:
-      template: '{{.DOCKER_REGISTRY}}/m4agenbitter/qwerzy:{{.VERSION}}'
+      template: '{{.DOCKER_REGISTRY}}/qwerzy:{{.VERSION}}'
   local: {}
 deploy:
   kubectl: {}
@@ -18,7 +18,7 @@ profiles:
     - docker: {}
     tagPolicy:
       envTemplate:
-        template: '{{.DOCKER_REGISTRY}}/m4agenbitter/qwerzy:{{.DIGEST_HEX}}'
+        template: '{{.DOCKER_REGISTRY}}/qwerzy:{{.DIGEST_HEX}}'
     local: {}
   deploy:
     helm:
@@ -26,5 +26,5 @@ profiles:
       - name: qwerzy
         chartPath: charts/qwerzy
         setValueTemplates:
-          image.repository: '{{.DOCKER_REGISTRY}}/m4agenbitter/qwerzy'
+          image.repository: '{{.DOCKER_REGISTRY}}/qwerzy'
           image.tag: '{{.DIGEST_HEX}}'
