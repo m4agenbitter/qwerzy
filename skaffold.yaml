@@ -2,7 +2,7 @@ apiVersion: skaffold/v1beta2
 kind: Config
 build:
   artifacts:
-  - image: "{{.DOCKER_REGISTRY}}/qwerzy:{{.VERSION}}"
+  - image: '{{.DOCKER_REGISTRY}}/qwerzy:{{.VERSION}}'
     context: .
     docker: {}
   tagPolicy:
