@@ -2,12 +2,12 @@ apiVersion: skaffold/v1beta2
 kind: Config
 build:
   artifacts:
-  - image: '{{.DOCKER_REGISTRY}}/qwerzy:{{.VERSION}}'
+  - image: qwerzy
     context: .
     docker: {}
   tagPolicy:
     envTemplate:
-      template: '{{.DOCKER_REGISTRY}}/qwerzy:{{.VERSION}}'
+      template: '{{.DOCKER_REGISTRY}}/m4agenbitter/qwerzy:{{.VERSION}}'
   local: {}
 deploy:
   kubectl: {}
@@ -18,7 +18,7 @@ profiles:
     - docker: {}
     tagPolicy:
       envTemplate:
-        template: '{{.DOCKER_REGISTRY}}/qwerzy:{{.DIGEST_HEX}}'
+        template: '{{.DOCKER_REGISTRY}}/m4agenbitter/qwerzy:{{.DIGEST_HEX}}'
     local: {}
   deploy:
     helm:
@@ -26,5 +26,5 @@ profiles:
       - name: qwerzy
         chartPath: charts/qwerzy
         setValueTemplates:
-          image.repository: '{{.DOCKER_REGISTRY}}/qwerzy'
+          image.repository: '{{.DOCKER_REGISTRY}}/m4agenbitter/qwerzy'
           image.tag: '{{.DIGEST_HEX}}'
