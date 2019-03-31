@@ -22,7 +22,6 @@ pipeline {
           dir('/home/jenkins/go/src/github.com/m4agenbitter/qwerzy') {
             checkout scm
             sh "make linux"
-            sh "sleep 333333333333"
             sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
           }
@@ -51,6 +50,7 @@ pipeline {
             sh "echo \$(jx-release-version) > VERSION"
             sh "jx step tag --version \$(cat VERSION)"
             sh "make build"
+            sh "sleep 333333333333"
             sh "export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml"
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
